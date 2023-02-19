@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.Speciality" 
+    table="SPECIALITY"
+>
+
+    <id
+        name="specialityId"
+        type="java.lang.Long"
+        column="SPECIALITY_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="number"
+        type="java.lang.String"
+        column="NUMBER"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="75"
+    />
+    <property
+        name="shortname"
+        type="java.lang.String"
+        column="SHORTNAME"
+        not-null="true"
+        length="7"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Faculty -->
+    <many-to-one
+        name="faculty"
+        class="com.itm.vuz.common.domain.Faculty"
+        not-null="true"
+    >
+        <column name="FACULTY_ID" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to StudentGroup -->
+
+    <set
+        name="studentGroups"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="SPECIALITY_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.StudentGroup"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to EducationPlan -->
+
+    <set
+        name="educationPlans"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="SPECIALITY_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.EducationPlan"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

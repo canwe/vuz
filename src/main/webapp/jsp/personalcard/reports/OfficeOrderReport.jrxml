@@ -1,0 +1,209 @@
+<?xml version="1.0" ?>
+    <!DOCTYPE jasperReport
+        PUBLIC "-//JasperReports//DTD Report Design//EN"
+        "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+    <jasperReport name="OfficeOrderReport" isIgnorePagination="false"
+        pageHeight="842" pageWidth="595" leftMargin="20" rightMargin="20"
+        topMargin="30" bottomMargin="30" columnCount="2" columnWidth="275" columnSpacing="5">
+        <style name="Report_title" fontName="Times New Roman" isBold="true"
+               fontSize="16" pdfEncoding="Cp1251" pdfFontName="Times New Roman">
+        </style>
+        <style name="Report_subject" fontName="Times New Roman" isBold="true"
+               fontSize="14" pdfEncoding="Cp1251" pdfFontName="Times New Roman">
+        </style>
+
+        <style name="Report_data" fontName="Times New Roman" isBold="false"
+            fontSize="14" pdfEncoding="Cp1251" pdfFontName="Times New Roman">
+        </style>
+
+        <style name="Report_signer" fontName="Times New Roman" isBold="false"
+            fontSize="12" pdfEncoding="Cp1251" pdfFontName="Times New Roman">
+        </style>
+
+        <style name="Report_maker" fontName="Times New Roman" isBold="true"
+            isItalic="true" fontSize="12" pdfEncoding="Cp1251" pdfFontName="Times New Roman">
+        </style>
+
+        <parameter name="dateOrder" class="java.util.Date"></parameter>
+        <parameter name="externalNumber" class="java.lang.String"></parameter>
+        <parameter name="subject" class="java.lang.String"></parameter>
+        <parameter name="reason" class="java.lang.String"></parameter>
+        <parameter name="signerPosition" class="java.lang.String"></parameter>
+        <parameter name="signerName" class="java.lang.String"></parameter>
+        <parameter name="makerPosition" class="java.lang.String"></parameter>
+        <parameter name="makerName" class="java.lang.String"></parameter>
+        <parameter name="coordinator1Position" class="java.lang.String"></parameter>
+        <parameter name="coordinator1Name" class="java.lang.String"></parameter>
+        <parameter name="coordinator2Position" class="java.lang.String"></parameter>
+        <parameter name="coordinator2Name" class="java.lang.String"></parameter>
+        <parameter name="coordinator3Position" class="java.lang.String"></parameter>
+        <parameter name="coordinator3Name" class="java.lang.String"></parameter>
+
+    <field name="groupNumber" class="java.lang.String">
+            <fieldDescription>StudentHistory.student.studentGroup.number</fieldDescription>
+        </field>
+        <field name="studentName" class="java.lang.String">
+            <fieldDescription>StudentHistory.student.name</fieldDescription>
+        </field>
+        <field name="studentFamily" class="java.lang.String">
+            <fieldDescription>StudentHistory.student.familyName</fieldDescription>
+        </field>
+        <field name="studentPatronymic" class="java.lang.String">
+            <fieldDescription>StudentHistory.student.patronymic</fieldDescription>
+        </field>
+        <field name="studentComment" class="java.lang.String">
+            <fieldDescription>StudentHistory.comment</fieldDescription>
+        </field>
+        <group name="studentGroup" isReprintHeaderOnEachPage="true">
+            <groupExpression>$F{groupNumber}</groupExpression>
+            <groupHeader>
+                <band height="20">
+                    <textField evaluationTime="Group" evaluationGroup="studentGroup">
+                        <reportElement x="0" y="0" width="275" height="20" style="Report_subject"></reportElement>
+                        <box border="Thin" />
+                        <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                        <textFieldExpression class="java.lang.String"><![CDATA[$F{groupNumber} + " группа"]]></textFieldExpression>
+                    </textField>
+                </band>
+            </groupHeader>
+            <groupFooter>
+                <band height="20">
+
+                </band>
+            </groupFooter>
+        </group>
+        <title>
+            <band height="220">
+                <staticText>
+                    <reportElement x="0" y="0" width="555" height="40" style="Report_title" />
+                    <textElement textAlignment="Center" verticalAlignment="Middle"></textElement>
+                    <text><![CDATA[ФГОУ ВПО МОСКОВСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ ПРИРОДООБУСТРОЙСТВА]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="0" y="60" width="555" height="20" style="Report_title" positionType="Float" />
+                    <textElement textAlignment="Center" verticalAlignment="Middle"></textElement>
+                    <text><![CDATA[ПРИКАЗ]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="0" y="80" width="275" height="20" style="Report_title" positionType="Float" />
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA[new java.text.SimpleDateFormat("<< dd >> MMMM yyyy г.").format($P{dateOrder}) ]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="275" y="80" width="280" height="20" style="Report_title" positionType="Float" />
+                    <textElement textAlignment="Right" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA["№ " + $P{externalNumber}]]></textFieldExpression>
+                </textField>
+                <staticText>
+                    <reportElement x="0" y="120" width="555" height="20" style="Report_title" positionType="Float" />
+                    <textElement textAlignment="Center" verticalAlignment="Middle"></textElement>
+                    <text><![CDATA[Москва]]></text>
+                </staticText>
+                <textField isStretchWithOverflow="true">
+                    <reportElement x="0" y="160" width="555" height="60" style="Report_subject" positionType="Float"
+                                   stretchType="RelativeToTallestObject" isRemoveLineWhenBlank="true" />
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA[$P{subject}]]></textFieldExpression>
+                </textField>
+            </band>
+        </title>
+        <detail>
+            <band height="20">
+                <textField>
+                    <reportElement x="0" y="0" width="275" height="20" style="Report_data" positionType="Float"></reportElement>
+                    <box border="Thin" />
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String">
+                        <![CDATA[
+                            $V{studentGroup_COUNT}.toString() + ". " +
+                            $F{studentFamily} + " " +
+                            $F{studentName}.substring(0, 1).toUpperCase() + "." +
+                            $F{studentPatronymic}.substring(0, 1).toUpperCase() + ".  " +
+                            $F{studentComment}
+                        ]]>
+                    </textFieldExpression>
+                </textField>
+            </band>
+        </detail>
+        <summary>
+            <band height="280">
+                <rectangle>
+                    <reportElement x="0" y="0" width="555" height="20"></reportElement>
+                    <graphicElement pen="None"></graphicElement>
+                </rectangle>
+                <textField>
+                    <reportElement x="0" y="20" width="555" height="20" style="Report_data" stretchType="RelativeToTallestObject"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA["Основание: " + $P{reason}]]></textFieldExpression>
+                </textField>
+                <rectangle>
+                    <reportElement x="0" y="60" width="555" height="40"></reportElement>
+                    <graphicElement pen="None"></graphicElement>
+                </rectangle>
+                <textField>
+                    <reportElement x="0" y="100" width="250" height="20" style="Report_signer"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA[$P{signerPosition}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="305" y="100" width="250" height="20" style="Report_signer"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA[$P{signerName}]]></textFieldExpression>
+                </textField>
+                <rectangle>
+                    <reportElement x="0" y="120" width="555" height="20"></reportElement>
+                    <graphicElement pen="None"></graphicElement>
+                </rectangle>
+                <staticText>
+                    <reportElement x="0" y="140" width="250" height="20" style="Report_maker"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <text><![CDATA[Проект вносит:]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="305" y="140" width="250" height="20" style="Report_maker"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <text><![CDATA[Согласовано:]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="0" y="160" width="250" height="20" style="Report_maker"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA[$P{makerPosition}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="305" y="160" width="205" height="20" style="Report_maker"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA[$P{coordinator1Position}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="0" y="180" width="250" height="20" style="Report_maker"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA["________________ " + $P{makerName}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="305" y="180" width="250" height="20" style="Report_maker"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA["________________ " + $P{coordinator1Name}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="305" y="200" width="250" height="20" style="Report_maker"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA[$P{coordinator2Position}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="305" y="220" width="250" height="20" style="Report_maker"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA["________________ " + $P{coordinator2Name}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="305" y="240" width="250" height="20" style="Report_maker"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA[$P{coordinator3Position}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="305" y="260" width="250" height="20" style="Report_maker"></reportElement>
+                    <textElement textAlignment="Left" verticalAlignment="Middle"></textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA["________________ " + $P{coordinator3Name}]]></textFieldExpression>
+                </textField>
+            </band>
+        </summary>
+</jasperReport>

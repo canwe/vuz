@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+        "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+    <tlibversion>1.0</tlibversion>
+    <jspversion>1.1</jspversion>
+    <shortname>vuz tag Library</shortname>
+    <info>vuz</info>
+
+    <tag>
+        <name>groupcard</name>
+        <tagclass>com.itm.vuz.groupcard.GroupCardTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>theme</name>
+            <required>false</required>
+        </attribute>
+
+        <attribute>
+            <name>semester</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>course</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>year</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>group</name>
+            <required>false</required>
+        </attribute>
+
+        <attribute>
+            <name>search</name>
+            <required>false</required>
+        </attribute>
+
+        <attribute>
+            <name>editnotes</name>
+            <required>false</required>
+        </attribute>
+
+    </tag>
+
+    <tag>
+        <name>calendar</name>
+        <tagclass>com.itm.vuz.common.CalendarTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>readonly</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>size</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>maxlength</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>datasource</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+
+
+</taglib>

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.Teacher" 
+    table="TEACHER"
+>
+
+    <id
+        name="teacherId"
+        type="java.lang.Long"
+        column="TEACHER_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Personal -->
+    <many-to-one
+        name="personal"
+        class="com.itm.vuz.common.domain.Personal"
+        not-null="true"
+    >
+        <column name="PERSONAL_ID" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to DisciplineTeacher -->
+
+    <set
+        name="disciplineTeachers"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="TEACHER_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.DisciplineTeacher"
+        />
+    </set>
+    <!-- bi-directional many-to-one association to Subfaculty -->
+    <many-to-one
+        name="subfaculty"
+        class="com.itm.vuz.common.domain.Subfaculty"
+        not-null="true"
+    >
+        <column name="SUBFACULTY_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-many association to Discipline -->
+
+    <set
+        name="disciplines"
+        lazy="true"
+		cascade="none"
+        table="DISCIPLINE_TEACHER"
+
+    >
+        <key>
+            <column name="TEACHER_ID" />
+        </key>
+        
+        <many-to-many
+            class="com.itm.vuz.common.domain.Discipline"
+        >
+            <column name="DISCIPLINE_ID" />
+        </many-to-many>
+    </set>
+
+</class>
+</hibernate-mapping>

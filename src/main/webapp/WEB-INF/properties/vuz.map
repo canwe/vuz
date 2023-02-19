@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE sitemap PUBLIC "SOFIA Site Map" "http://www.salmonllc.com/sofiaExamples/sitemap.dtd">
+<siteMap>
+  <entry>
+    <name>unknownImage</name>
+    <uri>/jsp/images/unknown.gif</uri>
+    <useForward>false</useForward>
+    <secure>false</secure>
+  </entry>
+
+  <entry>
+    <name>msueeHeaderImage</name>
+    <uri>/jsp/images/msuee_top.jpg</uri>
+    <useForward>false</useForward>
+    <secure>false</secure>
+  </entry>
+
+  <entry>
+    <name>asuImage</name>
+    <uri>/jsp/images/asu.gif</uri>
+    <useForward>false</useForward>
+    <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>graduateImage</name>
+     <uri>/jsp/images/graduate.gif</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>groupCardImage</name>
+     <uri>/jsp/images/groupCard.gif</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>personalCardImage</name>
+     <uri>/jsp/images/personalCard.gif</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>subFacultyImage</name>
+     <uri>/jsp/images/subFaculty.gif</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>AdminImage</name>
+     <uri>/jsp/images/security.gif</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>browseImage</name>
+     <uri>/jsp/images/security.gif</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>homePageImage</name>
+     <uri>/jsp/images/graduate.gif</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>logoutImage</name>
+     <uri>/jsp/images/backover.gif</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>HomePage</name>
+     <uri>/jsp/HomePage.jsp</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>LoginPage</name>
+     <uri>/jsp/login.jsp</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>JasperReportApplet</name>
+     <uri>/jsp/reports/ReportApplet.jsp</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>JasperReportDownload</name>
+     <uri>/jsp/reports/jasperReportDownload.jsp</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>OfficeOrder</name>
+     <uri>/jsp/personalcard/OfficeOrder.jsp</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>OfficeOrderSearch</name>
+     <uri>/jsp/personalcard/OfficeOrderSearch.jsp</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>PersonalCard</name>
+     <uri>/jsp/personalcard/PersonalCard.jsp</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+     <name>StudentSearch</name>
+     <uri>/jsp/personalcard/StudentSearch.jsp</uri>
+     <useForward>false</useForward>
+     <secure>false</secure>
+  </entry>
+
+  <entry>
+  	<name>ExamListDetails</name>
+  	<uri>/jsp/examlist/ExamListDetails.jsp</uri>
+  	<useForward>false</useForward>
+  	<secure>false</secure>
+  </entry>
+
+  <entry>
+  	<name>ExamList</name>
+  	<uri>/jsp/examlist/ExamList.jsp</uri>
+  	<useForward>false</useForward>
+  	<secure>false</secure>
+  </entry>
+
+  <entry>
+    <name>SessionExpired</name>
+    <uri>/jsp/login.jsp</uri>
+    <useForward>false</useForward>
+    <secure>false</secure>
+  </entry>
+
+  <entry>
+    <name>PageExpired</name>
+    <uri>/Jsp/HomePage.jsp</uri>
+    <useForward>false</useForward>
+    <secure>false</secure>
+  </entry>
+</siteMap>

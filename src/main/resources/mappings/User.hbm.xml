@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.User" 
+    table="USERS"
+>
+
+    <id
+        name="userId"
+        type="java.lang.Integer"
+        column="USER_ID"
+    >
+    
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="login"
+        type="java.lang.String"
+        column="LOGIN"
+        length="15"
+    />
+    <property
+        name="password"
+        type="java.lang.String"
+        column="PPASSWORD"
+        length="15"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Personal -->
+    <many-to-one
+        name="personal"
+        class="com.itm.vuz.common.domain.Personal"
+        not-null="true"
+    >
+        <column name="PERSONAL_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to UserRole -->
+    <many-to-one
+        name="userRole"
+        class="com.itm.vuz.common.domain.UserRole"
+        not-null="true"
+    >
+        <column name="USER_ROLE_ID" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to StudentHistory -->
+
+    <set
+        name="studentHistories"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="USER_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.StudentHistory"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

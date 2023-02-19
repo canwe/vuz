@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.BaseDiscipline" 
+    table="BASE_DISCIPLINE"
+>
+
+    <id
+        name="baseDisciplineId"
+        type="java.lang.Long"
+        column="BASE_DISCIPLINE_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="75"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to Discipline -->
+
+    <set
+        name="disciplines"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="BASE_DISCIPLINE_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Discipline"
+        />
+    </set>
+    <!-- bi-directional many-to-one association to Subfaculty -->
+    <many-to-one
+        name="subfaculty"
+        class="com.itm.vuz.common.domain.Subfaculty"
+        not-null="true"
+    >
+        <column name="SUBFACULTY_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

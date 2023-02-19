@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.Note" 
+    table="NOTE"
+>
+
+    <id
+        name="noteId"
+        type="java.lang.Long"
+        column="NOTE_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="freeAttendance"
+        type="java.lang.Boolean"
+        column="FREE_ATTENDANCE"
+        length="1"
+    />
+    <property
+        name="rebuke"
+        type="java.lang.String"
+        column="REBUKE"
+        length="12"
+    />
+    <property
+        name="lastExamDate"
+        type="java.sql.Timestamp"
+        column="LAST_EXAM_DATE"
+        length="23"
+    />
+    <property
+        name="sessionProlongationDate"
+        type="java.sql.Timestamp"
+        column="SESSION_PROLONGATION_DATE"
+        length="23"
+    />
+    <property
+        name="sessionClosingDate"
+        type="java.sql.Timestamp"
+        column="SESSION_CLOSING_DATE"
+        length="23"
+    />
+    <property
+        name="studentgrant"
+        type="java.lang.String"
+        column="STUDENTGRANT"
+        length="7"
+    />
+    <property
+        name="practice"
+        type="java.lang.String"
+        column="PRACTICE"
+        length="7"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to StudentGroup -->
+    <many-to-one
+        name="studentGroup"
+        class="com.itm.vuz.common.domain.StudentGroup"
+        not-null="true"
+    >
+        <column name="STUDENT_GROUP_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Card -->
+    <many-to-one
+        name="card"
+        class="com.itm.vuz.common.domain.Card"
+        not-null="true"
+    >
+        <column name="CARD_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Student -->
+    <many-to-one
+        name="student"
+        class="com.itm.vuz.common.domain.Student"
+        not-null="true"
+    >
+        <column name="STUDENT_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

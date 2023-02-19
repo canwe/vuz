@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.provider_class">com.salmonllc.hibernate.ConnectionProvider</property>
+        <property name="hibernate.connection.isolation">2</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.jdbc.batch_size">0</property>
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+        <property name="cache.provider_class">net.sf.hibernate.cache.HashtableCacheProvider</property>
+        <!--<property name="hibernate.hbm2ddl.auto">create-drop</property>-->
+        <mapping resource="mappings/Address.hbm.xml"/>
+        <mapping resource="mappings/Area.hbm.xml"/>
+        <mapping resource="mappings/BaseDiscipline.hbm.xml"/>
+        <mapping resource="mappings/Benefit.hbm.xml"/>
+        <mapping resource="mappings/Card.hbm.xml"/>
+        <mapping resource="mappings/Country.hbm.xml"/>
+        <mapping resource="mappings/Departament.hbm.xml"/>
+        <mapping resource="mappings/Discipline.hbm.xml"/>
+        <mapping resource="mappings/DisciplineTeacher.hbm.xml"/>
+        <mapping resource="mappings/EducationPlan.hbm.xml"/>
+        <mapping resource="mappings/ExamList.hbm.xml"/>
+        <mapping resource="mappings/ExamMark.hbm.xml"/>
+        <mapping resource="mappings/Faculty.hbm.xml"/>
+        <mapping resource="mappings/FacultyGroupCode.hbm.xml"/>
+        <mapping resource="mappings/Hospice.hbm.xml"/>
+        <mapping resource="mappings/Language.hbm.xml"/>
+        <mapping resource="mappings/Mark.hbm.xml"/>
+        <mapping resource="mappings/Note.hbm.xml"/>
+        <mapping resource="mappings/OfficeOrder.hbm.xml"/>
+        <mapping resource="mappings/OrderCategory.hbm.xml"/>
+        <mapping resource="mappings/Personal.hbm.xml"/>
+        <mapping resource="mappings/Position.hbm.xml"/>
+        <mapping resource="mappings/Region.hbm.xml"/>
+        <mapping resource="mappings/Settlement.hbm.xml"/>
+        <mapping resource="mappings/SettlementDefinition.hbm.xml"/>
+        <mapping resource="mappings/Speciality.hbm.xml"/>
+        <mapping resource="mappings/Student.hbm.xml"/>
+        <mapping resource="mappings/StudentEvent.hbm.xml"/>
+        <mapping resource="mappings/StudentGroup.hbm.xml"/>
+        <mapping resource="mappings/StudentHistory.hbm.xml"/>
+        <mapping resource="mappings/StudentStatus.hbm.xml"/>
+        <mapping resource="mappings/Subfaculty.hbm.xml"/>
+        <mapping resource="mappings/Teacher.hbm.xml"/>
+        <mapping resource="mappings/User.hbm.xml"/>
+        <mapping resource="mappings/UserRole.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.StudentHistory" 
+    table="STUDENT_HISTORY"
+>
+
+    <id
+        name="studentHistoryId"
+        type="java.lang.Long"
+        column="STUDENT_HISTORY_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="comment"
+        type="java.lang.String"
+        column="COMMENT"
+        length="250"
+    />
+    <property
+        name="dateEvent"
+        type="java.sql.Timestamp"
+        column="DATE_EVENT"
+        length="23"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to OfficeOrder -->
+    <many-to-one
+        name="officeOrder"
+        class="com.itm.vuz.common.domain.OfficeOrder"
+        not-null="true"
+    >
+        <column name="OFFICE_ORDER_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to User -->
+    <many-to-one
+        name="user"
+        class="com.itm.vuz.common.domain.User"
+        not-null="true"
+    >
+        <column name="USER_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to StudentEvent -->
+    <many-to-one
+        name="studentEvent"
+        class="com.itm.vuz.common.domain.StudentEvent"
+        not-null="true"
+    >
+        <column name="EVENT_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Student -->
+    <many-to-one
+        name="student"
+        class="com.itm.vuz.common.domain.Student"
+        not-null="true"
+    >
+        <column name="STUDENT_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

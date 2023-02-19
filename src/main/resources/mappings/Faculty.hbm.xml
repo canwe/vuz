@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.Faculty" 
+    table="FACULTY"
+>
+
+    <id
+        name="facultyId"
+        type="java.lang.Long"
+        column="FACULTY_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="shortName"
+        type="java.lang.String"
+        column="SHORT_NAME"
+        not-null="true"
+        length="7"
+    />
+    <property
+        name="facultyCode"
+        type="java.lang.Byte"
+        column="FACULTY_CODE"
+        length="3"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to FacultyGroupCode -->
+
+    <set
+        name="facultyGroupCodes"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="FACULTY_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.FacultyGroupCode"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Subfaculty -->
+
+    <set
+        name="subfaculties"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="FACULTY_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Subfaculty"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Speciality -->
+
+    <set
+        name="specialities"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="FACULTY_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Speciality"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

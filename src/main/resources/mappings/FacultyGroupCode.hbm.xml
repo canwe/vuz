@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.FacultyGroupCode" 
+    table="FACULTY_GROUP_CODE"
+>
+
+    <id
+        name="facultyGroupCodeId"
+        type="java.lang.Integer"
+        column="FACULTY_GROUP_CODE_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="comment"
+        type="java.lang.String"
+        column="COMMENT"
+        length="50"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Faculty -->
+    <many-to-one
+        name="faculty"
+        class="com.itm.vuz.common.domain.Faculty"
+        not-null="true"
+    >
+        <column name="FACULTY_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

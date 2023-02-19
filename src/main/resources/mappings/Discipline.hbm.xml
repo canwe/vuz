@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.Discipline" 
+    table="DISCIPLINE"
+>
+
+    <id
+        name="disciplineId"
+        type="java.lang.Long"
+        column="DISCIPLINE_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="hours"
+        type="short"
+        column="HOURS"
+        not-null="true"
+        length="5"
+    />
+	<property
+        name="independenthours"
+        type="short"
+        column="INDEPENDENT_HOURS"
+        not-null="true"
+        length="5"
+    />
+	<property
+        name="audiencehours"
+        type="short"
+        column="AUDIENCE_HOURS"
+        not-null="true"
+        length="5"
+    />
+    <property
+        name="semester"
+        type="boolean"
+        column="SEMESTER"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="course"
+        type="byte"
+        column="COURSE"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="year"
+        type="short"
+        column="YYEAR"
+        not-null="true"
+        length="5"
+    />
+    <property
+        name="checkingForm"
+        type="byte"
+        column="CHECKING_FORM"
+        not-null="true"
+        length="3"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to DisciplineTeacher -->
+
+    <set
+        name="disciplineTeachers"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="DISCIPLINE_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.DisciplineTeacher"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to ExamMark -->
+
+    <set
+        name="examMarks"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="DISCIPLINE_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.ExamMark"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Mark -->
+
+    <set
+        name="marks"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="DISCIPLINE_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Mark"
+        />
+    </set>
+    <!-- bi-directional many-to-one association to EducationPlan -->
+    <many-to-one
+        name="educationPlan"
+        class="com.itm.vuz.common.domain.EducationPlan"
+        not-null="true"
+    >
+        <column name="EDUCATION_PLAN_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to BaseDiscipline -->
+    <many-to-one
+        name="baseDiscipline"
+        class="com.itm.vuz.common.domain.BaseDiscipline"
+        not-null="true"
+    >
+        <column name="BASE_DISCIPLINE_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-many association to Teacher -->
+
+    <set
+        name="teachers"
+        lazy="true"
+		cascade="none"
+        table="DISCIPLINE_TEACHER"
+
+    >
+        <key>
+            <column name="DISCIPLINE_ID" />
+        </key>
+        
+        <many-to-many
+            class="com.itm.vuz.common.domain.Teacher"
+        >
+            <column name="TEACHER_ID" />
+        </many-to-many>
+    </set>
+
+</class>
+</hibernate-mapping>

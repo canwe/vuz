@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.UserRole" 
+    table="USER_ROLE"
+>
+
+    <id
+        name="userRoleId"
+        type="java.lang.Long"
+        column="USER_ROLE_ID"
+    >
+    
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        length="25"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to User -->
+
+    <set
+        name="users"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="USER_ROLE_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.User"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

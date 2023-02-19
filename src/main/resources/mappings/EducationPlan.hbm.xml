@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.EducationPlan" 
+    table="EDUCATION_PLAN"
+>
+
+    <id
+        name="educationPlanId"
+        type="java.lang.Long"
+        column="EDUCATION_PLAN_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="dataStart"
+        type="java.sql.Timestamp"
+        column="DATA_START"
+        length="23"
+    />
+    <property
+        name="dataEnd"
+        type="java.sql.Timestamp"
+        column="DATA_END"
+        length="23"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Speciality -->
+    <many-to-one
+        name="speciality"
+        class="com.itm.vuz.common.domain.Speciality"
+        not-null="true"
+    >
+        <column name="SPECIALITY_ID" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to Discipline -->
+
+    <set
+        name="disciplines"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="EDUCATION_PLAN_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Discipline"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

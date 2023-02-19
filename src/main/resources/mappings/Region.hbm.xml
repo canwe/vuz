@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.Region" 
+    table="REGION"
+>
+
+    <id
+        name="regionId"
+        type="java.lang.Long"
+        column="REGION_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="50"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to Area -->
+
+    <set
+        name="areas"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="REGION_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Area"
+        />
+    </set>
+    <!-- bi-directional many-to-one association to Country -->
+    <many-to-one
+        name="country"
+        class="com.itm.vuz.common.domain.Country"
+        not-null="true"
+    >
+        <column name="COUNTRY_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

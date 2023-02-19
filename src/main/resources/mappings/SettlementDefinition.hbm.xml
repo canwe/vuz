@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.SettlementDefinition" 
+    table="SETTLEMENT_DEFINITION"
+>
+
+    <id
+        name="settlementDefinitionId"
+        type="java.lang.Long"
+        column="SETTLEMENT_DEFINITION_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="25"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to Settlement -->
+
+    <set
+        name="settlements"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="SETTLEMENT_DEFINITION_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Settlement"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

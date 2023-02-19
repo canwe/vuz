@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.StudentGroup" 
+    table="STUDENT_GROUP"
+>
+
+    <id
+        name="studentGroupId"
+        type="java.lang.Long"
+        column="STUDENT_GROUP_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="course"
+        type="byte"
+        column="COURSE"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="educationDuration"
+        type="boolean"
+        column="EDUCATION_DURATION"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="number"
+        type="java.lang.String"
+        column="NUMBER"
+        length="7"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Speciality -->
+    <many-to-one
+        name="speciality"
+        class="com.itm.vuz.common.domain.Speciality"
+        not-null="true"
+    >
+        <column name="SPECIALITY_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Personal -->
+    <many-to-one
+        name="personal"
+        class="com.itm.vuz.common.domain.Personal"
+        not-null="true"
+    >
+        <column name="PERSONAL_ID" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to ExamMark -->
+
+    <set
+        name="examMarks"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="STUDENT_GROUP_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.ExamMark"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Note -->
+
+    <set
+        name="notes"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="STUDENT_GROUP_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Note"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Mark -->
+
+    <set
+        name="marks"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="STUDENT_GROUP_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Mark"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Student -->
+
+    <set
+        name="students"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="STUDENT_GROUP_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Student"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

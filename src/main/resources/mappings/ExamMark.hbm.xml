@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.ExamMark" 
+    table="EXAM_MARK"
+>
+
+    <id
+        name="examMarkId"
+        type="java.lang.Long"
+        column="EXAM_MARK_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="value"
+        type="java.lang.Byte"
+        column="VVALUE"
+        length="3"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Discipline -->
+    <many-to-one
+        name="discipline"
+        class="com.itm.vuz.common.domain.Discipline"
+        not-null="true"
+    >
+        <column name="DISCIPLINE_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to StudentGroup -->
+    <many-to-one
+        name="studentGroup"
+        class="com.itm.vuz.common.domain.StudentGroup"
+        not-null="true"
+    >
+        <column name="STUDENT_GROUP_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to ExamList -->
+    <many-to-one
+        name="examList"
+        class="com.itm.vuz.common.domain.ExamList"
+        not-null="true"
+    >
+        <column name="EXAM_LIST_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Student -->
+    <many-to-one
+        name="student"
+        class="com.itm.vuz.common.domain.Student"
+        not-null="true"
+    >
+        <column name="STUDENT_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

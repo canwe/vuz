@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.ExamList" 
+    table="EXAM_LIST"
+>
+
+    <id
+        name="examListId"
+        type="java.lang.Long"
+        column="EXAM_LIST_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="number"
+        type="java.lang.String"
+        column="NUMBER"
+        length="15"
+    />
+    <property
+        name="type"
+        type="java.lang.Byte"
+        column="TYPE"
+        length="3"
+    />
+    <property
+        name="dateCreation"
+        type="java.sql.Timestamp"
+        column="DATE_CREATION"
+        not-null="true"
+        length="23"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to ExamMark -->
+
+    <set
+        name="examMarks"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="EXAM_LIST_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.ExamMark"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Mark -->
+
+    <set
+        name="marks"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="EXAM_LIST_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Mark"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

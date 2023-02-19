@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.gretty' version '3.0.9'
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_16
+//    targetCompatibility = JavaVersion.VERSION_16
+}
+
+group 'com.itm'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compileOnly group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.3'
+    implementation group: 'javax.portlet', name: 'portlet-api', version: '2.0'
+    implementation group: 'jakarta.mail', name: 'jakarta.mail-api', version: '2.1.1'
+    implementation 'javax.servlet:jstl:1.2'
+    implementation group: 'net.sf.jasperreports', name: 'jasperreports', version: '3.6.2'
+    // implementation group: 'net.sf.hibernate', name: 'hibernate', version: '2.1.8'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '4.3.2.Final'
+    implementation group: 'commons-lang', name: 'commons-lang', version: '2.6'
+    implementation group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
+    implementation group: 'com.h2database', name: 'h2', version: '2.1.214'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+gretty {
+    httpPort = 8080
+    contextPath = '/'
+    //servletContainer = 'jetty9.4'
+    servletContainer = 'tomcat9'
+}
+
+test {
+    useJUnitPlatform()
+}

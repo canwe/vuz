@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.Student" 
+    table="STUDENT"
+>
+
+    <id
+        name="studentId"
+        type="java.lang.Long"
+        column="STUDENT_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="patronymic"
+        type="java.lang.String"
+        column="PATRONYMIC"
+        not-null="true"
+        length="25"
+    />
+    <property
+        name="familyName"
+        type="java.lang.String"
+        column="FAMILY_NAME"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="studentNumber"
+        type="java.lang.String"
+        column="STUDENT_NUMBER"
+        length="6"
+    />
+    <property
+        name="registration"
+        type="java.lang.String"
+        column="REGISTRATION"
+        length="150"
+    />
+    <property
+        name="passportData"
+        type="java.lang.String"
+        column="PASSPORT_DATA"
+        not-null="true"
+        length="150"
+    />
+    <property
+        name="passportNumber"
+        type="java.lang.String"
+        column="Passport_Number"
+        length="15"
+    />
+    <property
+        name="passportSeries"
+        type="java.lang.String"
+        column="Passport_Series"
+        length="15"
+    />
+    <property
+        name="passportDelivery"
+        type="java.lang.String"
+        column="Passport_Delivery"
+        length="150"
+    />
+    <property
+        name="hospiceNeeded"
+        type="boolean"
+        column="HOSPICE_NEEDED"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="sex"
+        type="boolean"
+        column="SEX"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="contract"
+        type="boolean"
+        column="CONTRACT"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="courseLeader"
+        type="java.lang.Boolean"
+        column="COURSE_LEADER"
+        length="1"
+    />
+    <property
+        name="profLeader"
+        type="java.lang.Boolean"
+        column="Prof_Leader"
+        length="1"
+    />
+    <property
+        name="lastEducationPlace"
+        type="java.lang.String"
+        column="LAST_EDUCATION_PLACE"
+        length="20"
+    />
+    <property
+        name="yearStarting"
+        type="java.sql.Timestamp"
+        column="YEAR_STARTING"
+        not-null="true"
+        length="23"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Address -->
+    <many-to-one
+        name="address"
+        class="com.itm.vuz.common.domain.Address"
+        not-null="true"
+    >
+        <column name="ADDRESS_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Language -->
+    <many-to-one
+        name="language"
+        class="com.itm.vuz.common.domain.Language"
+        not-null="true"
+    >
+        <column name="LANGUAGE_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to StudentStatus -->
+    <many-to-one
+        name="studentStatus"
+        class="com.itm.vuz.common.domain.StudentStatus"
+        not-null="true"
+    >
+        <column name="STUDENT_STATUS_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to StudentGroup -->
+    <many-to-one
+        name="studentGroup"
+        class="com.itm.vuz.common.domain.StudentGroup"
+        not-null="true"
+    >
+        <column name="STUDENT_GROUP_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Country -->
+    <many-to-one
+        name="country"
+        class="com.itm.vuz.common.domain.Country"
+        not-null="true"
+    >
+        <column name="COUNTRY_ID" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to ExamMark -->
+
+    <set
+        name="examMarks"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="STUDENT_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.ExamMark"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Note -->
+
+    <set
+        name="notes"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="STUDENT_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Note"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Mark -->
+
+    <set
+        name="marks"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="STUDENT_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Mark"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to StudentHistory -->
+
+    <set
+        name="studentHistories"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="STUDENT_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.StudentHistory"
+        />
+    </set>
+    <!-- bi-directional many-to-one association to Benefit -->
+    <many-to-one
+        name="benefit"
+        class="com.itm.vuz.common.domain.Benefit"
+        not-null="true"
+    >
+        <column name="BENEFIT_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Hospice -->
+    <many-to-one
+        name="hospice"
+        class="com.itm.vuz.common.domain.Hospice"
+        not-null="true"
+    >
+        <column name="HOSPICE_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

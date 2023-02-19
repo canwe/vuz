@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.DisciplineTeacher" 
+    table="DISCIPLINE_TEACHER"
+>
+
+    <id
+        name="disciplineTeacherId"
+        type="java.lang.Long"
+        column="DISCIPLINE_TEACHER_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Discipline -->
+    <many-to-one
+        name="discipline"
+        class="com.itm.vuz.common.domain.Discipline"
+        not-null="true"
+    >
+        <column name="DISCIPLINE_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Teacher -->
+    <many-to-one
+        name="teacher"
+        class="com.itm.vuz.common.domain.Teacher"
+        not-null="true"
+    >
+        <column name="TEACHER_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.OrderCategory" 
+    table="ORDER_CATEGORY"
+>
+
+    <id
+        name="orderCategoryId"
+        type="java.lang.Long"
+        column="ORDER_CATEGORY_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="orderCategory"
+        type="java.lang.String"
+        column="ORDER_CATEGORY"
+        length="100"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to OfficeOrder -->
+
+    <set
+        name="officeOrders"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="ORDER_CATEGORY_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.OfficeOrder"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

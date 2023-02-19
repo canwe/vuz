@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.OfficeOrder" 
+    table="OFFICE_ORDER"
+>
+
+    <id
+        name="officeOrderId"
+        type="java.lang.Long"
+        column="OFFICE_ORDER_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="pathToFile"
+        type="java.lang.String"
+        column="PATH_TO_FILE"
+        length="100"
+    />
+    <property
+        name="externalNumber"
+        type="java.lang.String"
+        column="EXTERNAL_NUMBER"
+        length="25"
+    />
+    <property
+        name="reason"
+        type="java.lang.String"
+        column="REASON"
+        length="512"
+    />
+    <property
+        name="subject"
+        type="java.lang.String"
+        column="SUBJECT"
+        length="2048"
+    />
+    <property
+        name="dateOrder"
+        type="java.sql.Timestamp"
+        column="DATE_ORDER"
+        length="23"
+    />
+    <property
+        name="issigned"
+        type="java.lang.Boolean"
+        column="ISSIGNED"
+        length="1"
+    />
+    <property
+        name="signerPosition"
+        type="java.lang.String"
+        column="SIGNER_POSITION"
+        length="50"
+    />
+    <property
+        name="signerName"
+        type="java.lang.String"
+        column="SIGNER_NAME"
+        length="100"
+    />
+    <property
+        name="makerPosition"
+        type="java.lang.String"
+        column="MAKER_POSITION"
+        length="50"
+    />
+    <property
+        name="makerName"
+        type="java.lang.String"
+        column="MAKER_NAME"
+        length="100"
+    />
+    <property
+        name="coordinator1Position"
+        type="java.lang.String"
+        column="COORDINATOR1_POSITION"
+        length="50"
+    />
+    <property
+        name="coordinator1Name"
+        type="java.lang.String"
+        column="COORDINATOR1_NAME"
+        length="100"
+    />
+    <property
+        name="coordinator2Position"
+        type="java.lang.String"
+        column="COORDINATOR2_POSITION"
+        length="50"
+    />
+    <property
+        name="coordinator2Name"
+        type="java.lang.String"
+        column="COORDINATOR2_NAME"
+        length="100"
+    />
+    <property
+        name="coordinator3Position"
+        type="java.lang.String"
+        column="COORDINATOR3_POSITION"
+        length="50"
+    />
+    <property
+        name="coordinator3Name"
+        type="java.lang.String"
+        column="COORDINATOR3_NAME"
+        length="100"
+    />
+    <property
+        name="coordinator4Position"
+        type="java.lang.String"
+        column="COORDINATOR4_POSITION"
+        length="50"
+    />
+    <property
+        name="coordinator4Name"
+        type="java.lang.String"
+        column="COORDINATOR4_NAME"
+        length="100"
+    />
+    <property
+        name="coordinator5Position"
+        type="java.lang.String"
+        column="COORDINATOR5_POSITION"
+        length="50"
+    />
+    <property
+        name="coordinator5Name"
+        type="java.lang.String"
+        column="COORDINATOR5_NAME"
+        length="100"
+    />
+    <property
+        name="coordinator6Position"
+        type="java.lang.String"
+        column="COORDINATOR6_POSITION"
+        length="50"
+    />
+    <property
+        name="coordinator6Name"
+        type="java.lang.String"
+        column="COORDINATOR6_NAME"
+        length="100"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to StudentHistory -->
+
+    <set
+        name="studentHistories"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="OFFICE_ORDER_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.StudentHistory"
+        />
+    </set>
+    <!-- bi-directional many-to-one association to OrderCategory -->
+    <many-to-one
+        name="orderCategory"
+        class="com.itm.vuz.common.domain.OrderCategory"
+        not-null="true"
+    >
+        <column name="ORDER_CATEGORY_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

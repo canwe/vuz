@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.itm.vuz.common.domain.Personal" 
+    table="PERSONAL"
+>
+
+    <id
+        name="personalId"
+        type="java.lang.Long"
+        column="PERSONAL_ID"
+    >
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="NAME"
+        length="25"
+    />
+    <property
+        name="patronymic"
+        type="java.lang.String"
+        column="PATRONYMIC"
+        length="25"
+    />
+    <property
+        name="familyName"
+        type="java.lang.String"
+        column="FAMILY_NAME"
+        length="50"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Position -->
+    <many-to-one
+        name="position"
+        class="com.itm.vuz.common.domain.Position"
+        not-null="true"
+    >
+        <column name="POSITION_ID" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to StudentGroup -->
+
+    <set
+        name="studentGroups"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="PERSONAL_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.StudentGroup"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Teacher -->
+
+    <set
+        name="teachers"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="PERSONAL_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.Teacher"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to User -->
+
+    <set
+        name="users"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+
+    >
+        <key>
+            <column name="PERSONAL_ID" />
+        </key>
+        
+        <one-to-many 
+            class="com.itm.vuz.common.domain.User"
+        />
+    </set>
+    <!-- bi-directional many-to-one association to Departament -->
+    <many-to-one
+        name="departament"
+        class="com.itm.vuz.common.domain.Departament"
+        not-null="true"
+    >
+        <column name="DEPARTMANENT_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>
